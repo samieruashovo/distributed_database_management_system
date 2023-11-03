@@ -1,0 +1,43 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Changes to be committed:
+#	modified:   frontend/twitter_clone/src/App.css
+#	modified:   frontend/twitter_clone/src/App.js
+#	new file:   frontend/twitter_clone/src/components/PostOperation.jsx
+#	modified:   frontend/twitter_clone/src/components/SearchInput.jsx
+#	modified:   frontend/twitter_clone/src/components/Second.jsx
+#	modified:   frontend/twitter_clone/src/components/Sidebar.jsx
+#	modified:   frontend/twitter_clone/src/components/SmallComponent/AddPicker.jsx
+#	new file:   frontend/twitter_clone/src/components/TweetComponents/AddPost.jsx
+#	modified:   frontend/twitter_clone/src/components/TweetComponents/BottomTab.jsx
+#	new file:   frontend/twitter_clone/src/components/TweetComponents/Community.jsx
+#	new file:   frontend/twitter_clone/src/components/TweetComponents/CommunityPostCard.jsx
+#	modified:   frontend/twitter_clone/src/components/TweetComponents/HomeTweets.jsx
+#	new file:   frontend/twitter_clone/src/components/TweetComponents/PostCard.jsx
+#	modified:   frontend/twitter_clone/src/components/TweetComponents/TrendBar.jsx
+#	modified:   frontend/twitter_clone/src/components/TweetComponents/TweetCard.jsx
+#	modified:   frontend/twitter_clone/src/components/TweetComponents/TweetPostCard.jsx
+#	modified:   frontend/twitter_clone/src/components/UserRelated/RecommendUser.jsx
+#	modified:   frontend/twitter_clone/src/components/UserRelated/UserEditModal.jsx
+#	modified:   frontend/twitter_clone/src/pages/BookmarkList.jsx
+#	modified:   frontend/twitter_clone/src/pages/Explore.jsx
+#	modified:   frontend/twitter_clone/src/pages/FollowUser.jsx
+#	modified:   frontend/twitter_clone/src/pages/Login.jsx
+#	modified:   frontend/twitter_clone/src/pages/Notifications.jsx
+#	new file:   frontend/twitter_clone/src/pages/PostDetail.jsx
+#	modified:   frontend/twitter_clone/src/pages/PrivateRoomChat.jsx
+#	modified:   frontend/twitter_clone/src/pages/Profile.jsx
+#	modified:   frontend/twitter_clone/src/pages/Register.jsx
+#	modified:   frontend/twitter_clone/src/pages/TweetDetail.jsx
+#	modified:   frontend/twitter_clone/src/redux/asyncActions/ChatAsync.js
+#	modified:   frontend/twitter_clone/src/redux/asyncActions/CommentAsync.js
+#	new file:   frontend/twitter_clone/src/redux/asyncActions/PostAsync.js
+#	modified:   frontend/twitter_clone/src/redux/asyncActions/TweetAsync.js
+#	modified:   frontend/twitter_clone/src/redux/asyncActions/UserAsync.js
+#	new file:   frontend/twitter_clone/src/redux/slices/PostCommentSlice.js
+#	new file:   frontend/twitter_clone/src/redux/slices/postSlice.js
+#	modified:   frontend/twitter_clone/src/redux/store.js
+#

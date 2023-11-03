@@ -1,0 +1,20 @@
+0000000000000000000000000000000000000000 d86940c2e07b29ce74b90d6a6eee99e3daa4ff71 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690391348 +0600	commit (initial): first
+d86940c2e07b29ce74b90d6a6eee99e3daa4ff71 c27e3aab753b62386c9234105cda37ed61c63df3 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690524413 +0600	commit: added chat
+c27e3aab753b62386c9234105cda37ed61c63df3 952ae5ad03857216a7f2dc07793ba95f07e392cd Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690534413 +0600	commit: added tweets
+952ae5ad03857216a7f2dc07793ba95f07e392cd 26cc115a228aa7738b010aeba5338aa0bde64110 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690536731 +0600	commit: nearly finished backend
+26cc115a228aa7738b010aeba5338aa0bde64110 26cc115a228aa7738b010aeba5338aa0bde64110 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690606814 +0600	Branch: renamed refs/heads/main to refs/heads/main
+26cc115a228aa7738b010aeba5338aa0bde64110 75f40e3bd3de1f77df253cac003c64de48d27140 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690606882 +0600	commit: frontend added
+75f40e3bd3de1f77df253cac003c64de48d27140 d39daad91986acd875bb9b8ce634d4c5145dd638 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1690607926 +0600	commit: Added twitter_clone folder
+d39daad91986acd875bb9b8ce634d4c5145dd638 8f37fa464ae097e332200f76133c171dcda25f82 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1691132261 +0600	commit: added 3 folder to frontend
+8f37fa464ae097e332200f76133c171dcda25f82 1ac86364f672a38f2eaafa1bccee1eb604063021 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1691159128 +0600	commit: have to fix css
+1ac86364f672a38f2eaafa1bccee1eb604063021 09f1b8f548c766f78d364143fcdbf608944e1da7 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1696836660 +0600	commit: asd
+09f1b8f548c766f78d364143fcdbf608944e1da7 1e1e7a23e21dae469b8769634377c97c56716723 Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1697205579 +0600	commit: slj
+1e1e7a23e21dae469b8769634377c97c56716723 8c4398e6d4b99be8e7142d38b88f21e5eee0e7ab Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1697348931 +0600	commit: 4 table fragmentation
+8c4398e6d4b99be8e7142d38b88f21e5eee0e7ab 1b912ee6b166c609460a4e319fff4a4caae8845f Samier Shovo <84716783+samieruashovo@users.noreply.github.com> 1697553763 +0600	commit: almost complete backend I hope
+1b912ee6b166c609460a4e319fff4a4caae8845f 76936352f7855fc879464e466b642ef07bfc51b3 samieruashovo <samieruashovo@gmail.com> 1697680814 +0600	commit: added finishing touch to backend
+76936352f7855fc879464e466b642ef07bfc51b3 0175519dbc4d49362d5ddfd0a176798cc110d04f samieruashovo <samieruashovo@gmail.com> 1698301537 +0600	commit: fixed like function in backend
+0175519dbc4d49362d5ddfd0a176798cc110d04f b3ac6837a05fc39b2d223946d56c207ff8cc1310 samieruashovo <samieruashovo@gmail.com> 1698476404 +0600	commit: finished tweet details I hope
+b3ac6837a05fc39b2d223946d56c207ff8cc1310 649be829c2d8bba1feceeca1ed61b107a346a452 samieruashovo <samieruashovo@gmail.com> 1698504498 +0600	commit: working on chat
+649be829c2d8bba1feceeca1ed61b107a346a452 132d32e37fb2ffbe3b2d4b00fee6a4ad4f868671 samieruashovo <samieruashovo@gmail.com> 1698564686 +0600	commit: chat fixed
+132d32e37fb2ffbe3b2d4b00fee6a4ad4f868671 9fbf2f223df58b8f363e8cb69debf78f766e3de7 samieruashovo <samieruashovo@gmail.com> 1698735692 +0600	commit: have to gender fix
+9fbf2f223df58b8f363e8cb69debf78f766e3de7 dd659e0d2532bbfe63668a9710336c7289474df9 samieruashovo <samieruashovo@gmail.com> 1698763517 +0600	commit: have to fix profile pic and groups
