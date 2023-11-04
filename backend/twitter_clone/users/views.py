@@ -27,14 +27,25 @@ class UsersList(ListAPIView):
 
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
-    serializer_class = UserEditSerializer
+    serializer_class = UserSerializer  # UserEditSerializer
     lookup_url_kwarg = 'username'
     lookup_field = 'username'
+
     # permission_classes = [IsUserOrReadOnly]
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context["request"] = self.request
+        username = self.kwargs.get(self.lookup_url_kwarg)
+        username2 = self.kwargs.get('username2')
+
+        context["username"] = username
+        if(username2 is not None):
+            context["username2"] = username2
+
+        print("userdetailview")
+        print(username2)
+        print(context)
         return context
 
 

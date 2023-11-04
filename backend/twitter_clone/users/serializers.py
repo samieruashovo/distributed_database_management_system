@@ -22,7 +22,7 @@ class UserCreateSerializer(UserCreateSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # i_follow = serializers.SerializerMethodField(read_only=True)
+    i_follow = serializers.SerializerMethodField(default=True)
     followers = serializers.SerializerMethodField(read_only=True)
     following = serializers.SerializerMethodField(read_only=True)
 
@@ -42,18 +42,49 @@ class UserSerializer(serializers.ModelSerializer):
             "following",
             "gender",
             "created_at",
+            "i_follow",
         ]
         extra_kwargs = {"password": {"write_only": True}}
 
     def get_followers(self, obj):
+        print("get_followers function")
+        print(obj.followed.count())
         return obj.followed.count()
 
     def get_following(self, obj):
         return obj.following.count()
 
-    # def get_i_follow(self,obj):
-    #     current_user = self.context.get('request').user
-    #     return True if current_user in obj.followed.all() else False
+    def get_i_follow(self, obj):
+
+        current_user = self.context.get('username')
+        print(type(current_user))
+        followed_usernames = obj.followed.all().values_list('username', flat=True)
+        if current_user is not None and len(current_user) != 0:
+            print(repr(current_user))
+            print(followed_usernames)
+            # if current_user in followed_usernames:
+            #     print("truexxx")
+            #     return True
+            print("xxxx")
+            print(followed_usernames.filter(
+
+                username=str(current_user)).exists())
+            # x = followed_usernames.filter(username=str(current_user)).exists()
+            # print(x)
+            # return x
+            print(self.context.get('username2'))
+
+            return True if followed_usernames.filter(username=self.context.get('username2')).exists() else False
+
+        # print(current_user)
+        # print("get_i_follow function")
+        # print(obj.following.all())
+        # if current_user in obj.followed.all():
+        #     print("true")
+        # else:
+        #     print('false')
+
+        # return True if current_user in obj.followed.all() else False
 
     def validate(self, data):
         if len(data.get("password")) <= 6:
