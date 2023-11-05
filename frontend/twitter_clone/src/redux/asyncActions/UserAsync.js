@@ -141,7 +141,7 @@ export const userProfile = (username) => async (dispatch) => {
   }
 };
 
-export const userEdit = (username, firstName, lastName, bio, gender, data) => async (dispatch) => {
+export const userEdit = (username, firstName, lastName, bio, gender,profile_pic, cover_pic, data) => async (dispatch) => {
 
   console.log("user edit function running asr"+ username)
   // dispatch(setLoading(true));
@@ -149,18 +149,46 @@ export const userEdit = (username, firstName, lastName, bio, gender, data) => as
     if(gender !== 'male' &&  gender !== 'female'){
       gender='male'
     }
-    const res = await axiosInstance.put(`user/${username}/`, {
-      'first_name': firstName,
-      "last_name":lastName,
-      "bio":bio,
-      'gender':gender
-
-    });
-    dispatch(setLoading(false));
-    for (const pair of data.entries()) {
-      const [key, value] = pair;
-      console.log(key, value + "asr");
+    console.log(profile_pic)
+    const res = await axiosInstance.put(`/user/update/${username}/`,data,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data', // Ensure the correct content type
+      },
     }
+    
+    // { //  /update
+    //   "first_name": firstName,
+    //   "last_name":lastName,
+    //   "bio":bio,
+    //   "gender":gender ,
+    //   "profile_pic": profile_pic,
+    //   'cover_pic': cover_pic
+      
+
+    // }
+    
+    );
+    // console.log("profilekslkssksk")
+    // console.log(cover_pic)
+    // console.log(data.get('cover_pic'))
+
+    // console.log("profilekslkssksk")
+
+  
+
+
+    // {
+    //   "first_name": "firstName",
+    //        "last_name":"lastName",
+    //        "bio":"bio",
+    //        "gender":"male"
+    //  }
+    dispatch(setLoading(false));
+    // for (const pair of data.entries()) {
+    //   const [key, value] = pair;
+    //   console.log(key, value + "asr");
+    // }
     dispatch(profileUserSuccess(res.data));
     dispatch(load_user());
     dispatch(setMessage("Succesfully Edited"));

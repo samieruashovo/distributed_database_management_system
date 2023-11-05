@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 from .permission import IsUserOrReadOnly
 from twitter_clone.pagination import CustomPagination
+import os
+from rest_framework.parsers import FileUploadParser
 
 from notifications.models import Notification
 
@@ -37,14 +39,14 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
         context = super().get_serializer_context()
         context["request"] = self.request
         username = self.kwargs.get(self.lookup_url_kwarg)
-        username2 = self.kwargs.get('username2')
+        # username2 = self.kwargs.get('username2')
 
         context["username"] = username
-        if(username2 is not None):
-            context["username2"] = username2
+        # if(username2 is not None):
+        #     context["username2"] = username2
 
-        print("userdetailview")
-        print(username2)
+        # print("userdetailview")
+        # print(username2)
         print(context)
         return context
 
@@ -95,20 +97,45 @@ def follow_user_list(request):
     return paginator.get_paginated_response(serializer.data)
 
 
-# @api_view(['PUT'])
-# def update_profile(request):
-#     print(request.user)
-#     print("here 11")
-#     user = request.user
-#     new_gender = request.data.get('gender', 'female')
-#     new_bio = request.data.get('bio', user.bio)
-#     new_firstname = request.data.get('firstname', user.first_name)
-#     new_lastname = request.data.get('lastname', user.last_name)
+@api_view(['PUT'])
+def update_profile(request, username):
+    print(request.user)
+    print("here 11")
+    user = User.objects.get(username=username)
+    new_gender = request.data.get('gender', 'female')
+    new_bio = request.data.get('bio', user.bio)
+    new_firstname = request.data.get('first_name', user.first_name)
+    new_lastname = request.data.get('last_name', user.last_name)
+    username = request.data.get('username', user.username)
+    # profile_pic = request.FILES.get('profile_pic')
+    # cover_pic = request.FILES.get('cover_pic')
+    # profile_pic_path = os.path.join(
+    #     'media', 'avatars', f'{username}_profile_pic.png')
+    # cover_pic_path = os.path.join(
+    #     'media', 'avatars', f'{username}_cover_pic.png')
 
-#     user.gender = new_gender
-#     user.bio = new_bio
-#     user.firstname = new_firstname
-#     user.lastname = new_lastname
-#     user.save()
+    profile_pic = request.data.get('profile_pic', None)
+    cover_pic = request.data.get('cover_pic', None)
+    # form = ModelFormWithFileField(request.POST, request.FILES)
+    print("nnnnnn")
+    print(request.data)
+    print(request.FILES)
 
-#     return Response({'message': 'Profile information updated successfully'}, status=Response({"ok"}))
+    print(type(cover_pic))
+    print("nnnnnn")
+
+    if profile_pic:
+        user.profile_pic = profile_pic
+
+    if cover_pic:
+        user.cover_pic = cover_pic
+
+    user.username = username
+    user.gender = new_gender
+    user.bio = new_bio
+    user.first_name = new_firstname
+    user.last_name = new_lastname
+
+    user.save()
+
+    return Response({'message': 'Profile information updated successfully'}, status=201)

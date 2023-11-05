@@ -115,7 +115,7 @@ const Sidebar = () => {
           {isAuthenticated && (
            
             <li>
-              {console.log("running 78")}
+              
               
               <Link to={(`/user/${dataObject.data.username}`) || "profile"}>
                 <i>

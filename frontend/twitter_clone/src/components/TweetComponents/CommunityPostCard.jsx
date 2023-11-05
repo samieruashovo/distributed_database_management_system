@@ -11,9 +11,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { axiosInstance } from "../..";
 import AnonyImage from "../profile/anonymous.jpg";
+import { CommunityPostOperation } from "../CommunityPostOperation";
 
 const CommunityPostCard = ({ tweet, dispatch, user }) => {
-  console.log(tweet);
+  // console.log(tweet);
   var uid = tweet.uuid;
   const likeTweetD = () => {
     dispatch(likeTweet(uid));
@@ -55,7 +56,7 @@ const CommunityPostCard = ({ tweet, dispatch, user }) => {
       </div>
       {tweet.parent ? (
         <>
-          <PostOperation
+          <CommunityPostOperation
             username={tweet.username}
             liked={tweet.iliked}
             likeTweetD={likeTweetD}
@@ -69,7 +70,7 @@ const CommunityPostCard = ({ tweet, dispatch, user }) => {
         </>
       ) : (
         <>
-          <PostOperation
+          <CommunityPostOperation
             username={tweet.username}
             liked={tweet.iliked}
             likeTweetD={likeTweetD}
@@ -91,23 +92,23 @@ const TweetHasParentOrNot = ({ tweet }) => {
   const [profilePicture, setProfilePicture] = useState(false);
 
   const getUserInfo = async (username) => {
-    console.log("asee");
+    // console.log("asee");
 
     try {
-      console.log("kssksk");
+      // console.log("kssksk");
       const res = await axiosInstance.get(
         `http://localhost:8000/user/${username}/`
       );
       setProfilePicture(res.data.profile_pic);
-      console.log(profilePicture + "alllll");
+      // console.log(profilePicture + "alllll");
     } catch (err) {
       // console.log(err);
     }
   };
   useEffect(() => {
-    console.log("laksdja");
+    // console.log("laksdja");
     getUserInfo(tweet?.username);
-    console.log("laksdjadone");
+    // console.log("laksdjadone");
   }, [tweet?.username]);
   const url = "http://localhost:8000/";
   return (
@@ -142,7 +143,8 @@ const TweetHasParentOrNot = ({ tweet }) => {
             <span id="hover" className="d-flex">
               {/* {tweet?.username} */}
               <span className="side-name">
-                @ Anonymous | {Moment(tweet?.created).fromNow(true)}
+                {/* {Moment(tweet?.created).fromNow(true)} */}@ Anonymous |
+                Posted unknown time ago
                 <span className="mx-2">
                   {tweet?.is_private ? <FaLock /> : <BiGlobe />}
                   {tweet?.isEdited && <span className="mx-2">- Edited</span>}

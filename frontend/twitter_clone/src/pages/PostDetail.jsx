@@ -133,7 +133,7 @@ const PostDetail = () => {
   if (!tweet.data || tweet.data.length === 0) {
     return (
       <div>
-        {console.log(tweet)}
+        {/* {console.log(tweet)} */}
         Loading... 
       </div>
     );
@@ -147,7 +147,7 @@ const PostDetail = () => {
       
   {tweet.data[0].username && (
         <Second>
-           {console.log("running post 9100")}
+           {/* {console.log("running post 9100")} */}
           <TweetHeader headerName="Detail" />
           <div className="tweetCard">
             <div className="actual-tweet">

@@ -30,7 +30,6 @@ const HomeTweets = () => {
   };
   return (
     <>
-    {console.log("running 90")}
       <Second>
         <TweetHeader headerName="Home" />
         <AddTweet />

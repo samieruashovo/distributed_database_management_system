@@ -11,18 +11,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { axiosInstance } from "../..";
 
-
-
 const TweetPostCard = ({ tweet, dispatch, user }) => {
- 
-
-
-  console.log(tweet)
-  var uid = tweet.uuid
+  // console.log(tweet)
+  var uid = tweet.uuid;
   const likeTweetD = () => {
     dispatch(likeTweet(uid));
   };
-  
+
   return (
     <div className="tweetCard">
       <div className="actual-tweet">
@@ -45,13 +40,8 @@ const TweetPostCard = ({ tweet, dispatch, user }) => {
         {tweet.parent ? (
           <div style={{ display: "flex", flexDirection: "column" }}>
             <strong>
-              <Link
-                to={`${tweet.username}` || ""}
-                className="mx-2 side-name"
-              >
-                {tweet?.username === user?.username
-                  ? "You "
-                  : tweet.username}{" "}
+              <Link to={`${tweet.username}` || ""} className="mx-2 side-name">
+                {tweet?.username === user?.username ? "You " : tweet.username}{" "}
                 retweeted !
               </Link>
             </strong>
@@ -65,7 +55,7 @@ const TweetPostCard = ({ tweet, dispatch, user }) => {
       {tweet.parent ? (
         <>
           <PostOperation
-            username = {tweet.username}
+            username={tweet.username}
             liked={tweet.iliked}
             likeTweetD={likeTweetD}
             like_count={tweet.myparent.like_count}
@@ -79,7 +69,7 @@ const TweetPostCard = ({ tweet, dispatch, user }) => {
       ) : (
         <>
           <PostOperation
-          username = {tweet.username}
+            username={tweet.username}
             liked={tweet.iliked}
             likeTweetD={likeTweetD}
             like_count={tweet.like_count}
@@ -100,25 +90,23 @@ const TweetHasParentOrNot = ({ tweet }) => {
   const [profilePicture, setProfilePicture] = useState(false);
 
   const getUserInfo = async (username) => {
-    console.log("asee");
-    
-    try {
-      console.log("kssksk");
-      const res = await axiosInstance.get(`http://localhost:8000/user/${username}/`);
-      setProfilePicture(res.data.profile_pic)
-      console.log(profilePicture+ "alllll")
-     
-  
-  
-    } catch (err) {
+    // console.log("asee");
 
+    try {
+      // console.log("kssksk");
+      const res = await axiosInstance.get(
+        `http://localhost:8000/user/${username}/`
+      );
+      setProfilePicture(res.data.profile_pic);
+      // console.log(profilePicture + "alllll");
+    } catch (err) {
       // console.log(err);
     }
   };
   useEffect(() => {
-    console.log("laksdja")
+    // console.log("laksdja");
     getUserInfo(tweet?.username);
-    console.log("laksdjadone")
+    // console.log("laksdjadone");
   }, [tweet?.username]);
   const url = "http://localhost:8000/";
   return (
@@ -126,21 +114,23 @@ const TweetHasParentOrNot = ({ tweet }) => {
       <span className="d-flex">
         <span className="add-tweet-image ">
           <Link to={`/user/${tweet?.username}`}>
-
-          {profilePicture ? ( // Check if profilePicture has a value
-        <img 
-        className="rounded-circle author-image "
-              width="60px"
-              height="60px"
-        src={profilePicture} alt="Profile" />
-      ) : (
-        <img className="rounded-circle author-image "
-        width="60px"
-        height="60px"
-          src="https://dp.profilepics.in/profile-pictures-for-facebook-whatsapp/profile-pics/profile-pics-744.jpg"
-          alt="Default Profile"
-        />
-      )}
+            {profilePicture ? ( // Check if profilePicture has a value
+              <img
+                className="rounded-circle author-image "
+                width="60px"
+                height="60px"
+                src={profilePicture}
+                alt="Profile"
+              />
+            ) : (
+              <img
+                className="rounded-circle author-image "
+                width="60px"
+                height="60px"
+                src="https://dp.profilepics.in/profile-pictures-for-facebook-whatsapp/profile-pics/profile-pics-744.jpg"
+                alt="Default Profile"
+              />
+            )}
           </Link>
         </span>
 
@@ -149,8 +139,7 @@ const TweetHasParentOrNot = ({ tweet }) => {
             <span id="hover" className="d-flex">
               {/* {tweet?.username} */}
               <span className="side-name">
-                @ {tweet?.username} |{" "}
-                {Moment(tweet?.created).fromNow(true)}
+                @ {tweet?.username} | {Moment(tweet?.created).fromNow(true)}
                 <span className="mx-2">
                   {tweet?.is_private ? <FaLock /> : <BiGlobe />}
                   {tweet?.isEdited && <span className="mx-2">- Edited</span>}
@@ -159,13 +148,9 @@ const TweetHasParentOrNot = ({ tweet }) => {
             </span>
 
             <p className="mt-2">
-  <div className="divider">
-    {tweet?.title}
-  </div>
-  <div className="divider">
-    {tweet?.body}
-  </div>
-</p>
+              <div className="divider">{tweet?.title}</div>
+              <div className="divider">{tweet?.body}</div>
+            </p>
             {tweet?.image && (
               <img alt="img" src={tweet?.image} className="image img" />
             )}

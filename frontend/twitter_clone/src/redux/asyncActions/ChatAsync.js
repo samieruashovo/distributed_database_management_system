@@ -32,7 +32,7 @@ export const getRooms = (other_user) => async (dispatch) => {
 
       dispatch(addChatRoom(res.data));
     } else {
-      console.log("running getrooms else condition")
+      // console.log("running getrooms else condition")
 
       const res = await axiosInstance.get("chats/get_rooms/");
 

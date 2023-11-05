@@ -47,13 +47,13 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import LinkIcon from "@material-ui/icons/Link";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import CloseIcon from "@material-ui/icons/Close";
-import  "../styles/components/Profile.css";
+import "../styles/components/Profile.css";
 import ProfileCard from "../components/profile/ProfileCard";
-import TweetPost from"../components/profile/TweetPost"
+import TweetPost from "../components/profile/TweetPost";
 import axios from "axios";
 
 const Profile = () => {
-  console.log("running 456")
+  // console.log("running 456");
   const { username } = useParams();
   const { user: authUser } = useUserInfo();
   const [showUserModal, setShowUserModal] = useState(false);
@@ -85,19 +85,21 @@ const Profile = () => {
     },
   });
 
-  const getUserData = async(e)=>{
-    const res = await axiosInstance.get(`user/${username}/`);
-// console.log(res.data);
+  const getUserData = async (e) => {
+    const res = await axiosInstance.get(`user/${username}/shovo123/`);
 
-// console.log("hlki")
-setCurrentUser(res.data);
-// console.log(currentUser.cover_pic +"aertt")
+    console.log("hlki   asssss");
+    console.log(username);
+    console.log(res.data);
 
-  }
+    console.log("hlki   asssss");
+    setCurrentUser(res.data);
+    // console.log(currentUser.cover_pic +"aertt")
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getUserData();
-  }, [])
+  }, []);
   // const history = useHistory()
 
   // message &&
@@ -109,18 +111,17 @@ setCurrentUser(res.data);
   //     dispatch(userProfile(username));
   //     dispatch(tweet_specific_user(username));
   //   }
-    
+
   //   // if(!isAuthenticated){
   //   //   history.push('/login')
   //   // }
-    
+
   // }, [dispatch,username,isAuthenticated]);
   const jsonData = localStorage.getItem("userData");
   const dataObject = JSON.parse(jsonData);
   return (
     <div>
       <Second>
-      {console.log("running 9")}
         {message && (
           <AlertMessage
             removeMesage={removeMesage}
@@ -174,44 +175,52 @@ setCurrentUser(res.data);
               {/* editprofile or follow button section depending on the user */}
               {authUser?.email === currentUser.email ? (
                 <div className="follow-or-edit">
-                <button
-                  className="link-tweet"
-                  type="button"
-                  data-toggle="modal"
-                  data-target="#userModal"
-                  onClick={openModal}
-                >
-                  Edit Profile
-                </button>
-                {isModalOpen && (
-                <UserEditModal user={userprofile} modalId="userModal" onClose={closeModal}/>
-                )}
+                  <button
+                    className="link-tweet"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#userModal"
+                    onClick={isModalOpen ? closeModal : openModal}
+                  >
+                    Edit Profile
+                  </button>
+                  {isModalOpen && (
+                    <UserEditModal
+                      user={userprofile}
+                      modalId="userModal"
+                      onClose={closeModal}
+                    />
+                  )}
                 </div>
               ) : (
                 <div className="follow-or-edit">
-             
-                 <Link to={`/messages/w/${currentUser?.username}`}>
-                 <i className="largeicon mx-3 ">
+                  <Link to={`/messages/w/${currentUser?.username}`}>
+                    <i className="largeicon mx-3 ">
                       <BiSend />
                     </i>
-                 </Link>
-                 
-                 <div style={{ margin: '15px' }}>
-                  {userprofile?.i_follow ? (
-                    <button
-                      onClick={() => dispatch(userFollow(dataObject.data.username))}
-                      className="link-tweet "
-                    >
-                      Unfollow
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => dispatch(userFollow(dataObject.data.username))}
-                      className="link-tweet"
-                    >
-                      Follow
-                    </button>
-                  )}
+                  </Link>
+
+                  <div style={{ margin: "15px" }}>
+                    {console.log(currentUser.i_follow + "aaaaa")}
+                    {currentUser?.i_follow ? (
+                      <button
+                        onClick={() =>
+                          dispatch(userFollow(dataObject.data.username))
+                        }
+                        className="link-tweet "
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() =>
+                          dispatch(userFollow(dataObject.data.username))
+                        }
+                        className="link-tweet"
+                      >
+                        Follow
+                      </button>
+                    )}
                   </div>
                 </div>
               )}
@@ -219,7 +228,7 @@ setCurrentUser(res.data);
 
             <div className="user-info">
               <p>
-                {currentUser?.first_name+" "+currentUser?.last_name} <br />
+                {currentUser?.first_name + " " + currentUser?.last_name} <br />
                 <span className="side-name">@{currentUser?.username}</span>
               </p>
               <p>
@@ -228,28 +237,25 @@ setCurrentUser(res.data);
                   <i className="tweetIcons">
                     <AiOutlineSchedule />
                   </i>
-                 
+
                   <span className="mx-2">
-                  joined {" "}
-                    { Moment(currentUser.date_joined).format("MMMM Do YYYY")}
+                    joined{" "}
+                    {Moment(currentUser.date_joined).format("MMMM Do YYYY")}
                   </span>
                 </span>
               </p>
               <div className="FollowInfo d-flex">
-                
+                {console.log("currentUser.followers: " + currentUser.followers)}
                 <FollowInfo
                   number={currentUser.followers}
                   followinfo="followers"
                 />
-                <div style={{ margin: '0 10px' }}></div>
-               
-               
-               <FollowInfo
+                <div style={{ margin: "0 10px" }}></div>
+
+                <FollowInfo
                   number={currentUser.following}
                   followinfo="following"
                 />
-               
-               
               </div>
             </div>
           </>
@@ -258,14 +264,16 @@ setCurrentUser(res.data);
         {tweets.map((tweet) => {
           // console.log(username +"kilo")
           const condition = tweet.username === username;
-          
-          return condition? (<TweetPostCard
-            user={authUser}
-            dispatch={dispatch}
-            tweet={tweet}
-            key={tweet.uuid}
-          />):null
-})}
+
+          return condition ? (
+            <TweetPostCard
+              user={authUser}
+              dispatch={dispatch}
+              tweet={tweet}
+              key={tweet.uuid}
+            />
+          ) : null;
+        })}
       </Second>
       <div></div>
     </div>

@@ -26,9 +26,8 @@ const BookmarkList = () => {
     }, 3000);
   if (isAuthenticated) {
     return (
-      
       <Second>
-        {console.log("running 91")}
+        {/* {console.log("running 91")} */}
         {message && (
           <AlertMessage
             removeMesage={removeMesage}
@@ -53,7 +52,7 @@ const BookmarkList = () => {
   } else {
     return (
       <Second>
-        {console.log("running 93")}
+        {/* {console.log("running 93")} */}
         <h4 className="text-center mt-4">Please Login To Add BookMark!</h4>
       </Second>
     );

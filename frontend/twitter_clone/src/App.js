@@ -34,18 +34,18 @@ function App() {
   function websocketCon() {
     client = new ReconnectingWebSocket(endpoint + "?token=" + userIn.access);
     client.onopen = function () {
-      console.log("WebSocket Client Connected");
+      // console.log("WebSocket Client Connected");
     };
 
     client.onmessage = function (event) {
       const data = JSON.parse(event.data);
-      console.log(data);
+      // console.log(data);
 
       dispatch(tweetNotice(data.payload));
     };
 
     client.onclose = function () {
-      console.log("WebSocket Client disconnected");
+      // console.log("WebSocket Client disconnected");
     };
   }
   message &&

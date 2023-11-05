@@ -32,7 +32,7 @@ const Explore = () => {
   return (
     <>
       <Second>
-        {console.log("running 94")}
+        {/* {console.log("running 94")} */}
         <SearchInput />
 
         {tweetsInfo && tweetsInfo.isLoading ? (

@@ -52,7 +52,7 @@ export const userRegister = createSlice({
     },
     userRegisterSuccess: (state, action) => {
       state.message =
-        "Successfully registered ! Please activate account from mail.";
+        "Successfully registered ! Please contact admin to activate account";
     },
     userFail: (state, { payload }) => {
       state.user = null;
@@ -83,6 +83,7 @@ export const userRegister = createSlice({
     logMeOut: (state) => {
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
+      
       state.user = null;
       state.access = null;
       state.refresh = null;

@@ -15,7 +15,7 @@ import AddPicker from "./SmallComponent/AddPicker";
 import { colors } from "@material-ui/core";
 import axios from "axios";
 
-export const PostOperation = ({
+export const CommunityPostOperation = ({
   username,
   liked,
   id,
@@ -162,7 +162,7 @@ export const PostOperation = ({
             }}
             style={{ color: liked ? "red" : "" }}
           />
-          {/* <span className="side-name mx-1">Like disabled</span> */}
+          <span className="side-name mx-1">Like disabled</span>
 
           {/* {oriId ? "" : <span className="count">{like_count}</span>} */}
           {/* <span className="count">{like_count}</span> */}
@@ -215,7 +215,7 @@ export const PostOperation = ({
     );
   }
 };
-PostOperation.propTypes = {
+CommunityPostOperation.propTypes = {
   liked: PropTypes.bool,
   id: PropTypes.number,
   likePostD: PropTypes.func,

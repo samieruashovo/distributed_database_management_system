@@ -57,11 +57,11 @@ class UserSerializer(serializers.ModelSerializer):
     def get_i_follow(self, obj):
 
         current_user = self.context.get('username')
-        print(type(current_user))
+        # print(type(current_user))
         followed_usernames = obj.followed.all().values_list('username', flat=True)
         if current_user is not None and len(current_user) != 0:
-            print(repr(current_user))
-            print(followed_usernames)
+            # print(repr(current_user))
+            # print(followed_usernames)
             # if current_user in followed_usernames:
             #     print("truexxx")
             #     return True
@@ -69,12 +69,12 @@ class UserSerializer(serializers.ModelSerializer):
             print(followed_usernames.filter(
 
                 username=str(current_user)).exists())
-            # x = followed_usernames.filter(username=str(current_user)).exists()
-            # print(x)
+            x = followed_usernames.filter(username=str(current_user)).exists()
+            # print(x + "sklsdkdkd")
             # return x
-            print(self.context.get('username2'))
+            # print(self.context.get('username2'))
 
-            return True if followed_usernames.filter(username=self.context.get('username2')).exists() else False
+            return True if followed_usernames.filter(username=current_user).exists() else False
 
         # print(current_user)
         # print("get_i_follow function")

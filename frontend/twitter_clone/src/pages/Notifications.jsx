@@ -35,15 +35,15 @@ const Notifications = () => {
   }, [dispatch]);
 
   const loadMore = () => {
-    console.log("load more");
-    console.log(meta?.page, meta?.next);
+    // console.log("load more");
+    // console.log(meta?.page, meta?.next);
     if (meta.next !== null) {
       dispatch(loadMoreNotification(meta.page + 1));
     }
   };
   return (
     <Second>
-       {console.log("running 96")}
+      {/* {console.log("running 96")} */}
       <TweetHeader headerName="Notfications" />
 
       {loading ? (

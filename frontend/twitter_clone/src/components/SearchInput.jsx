@@ -37,7 +37,7 @@ const SearchInput = () => {
       {searchResult.length > 0 && (
         <div className="resultDiv">
           {searchResult.map((res) => (
-            <Link to={`${res.username}`} key={res.id}>
+            <Link to={`/user/${res.username}`} key={res.id}>
               <SearchResult res={res} />
             </Link>
           ))}

@@ -19,14 +19,14 @@ const FollowUser = () => {
     // dispatch(showSearchBar("no"));
   }, []);
   const loadMore = () => {
-    console.log(meta?.page, meta?.next);
+    // console.log(meta?.page, meta?.next);
     if (meta.next !== null) {
       dispatch(load_more_user(meta.page + 1));
     }
   };
   return (
     <Second>
-       {console.log("running 95")}
+      {/* {console.log("running 95")} */}
       <TweetHeader headerName="Follow Users" />
 
       <div className="p-2">

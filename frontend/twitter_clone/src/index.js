@@ -31,7 +31,7 @@ axiosInstance.interceptors.request.use(
   },
  err =>  {
     console.log(err);
-    console.log('hello')
+    // console.log('hello')
     return Promise.reject(err);
   }
 

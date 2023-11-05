@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate , useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { verify } from "../redux/asyncActions/UserAsync";
 
 const Activate = () => {
   const dispatch = useDispatch();
   const { uid, token } = useParams();
-  const history = useNavigate ();
-  console.log(uid, token);
+  const history = useNavigate();
+  // console.log(uid, token);
   const verifyMe = () => {
     dispatch(verify(uid, token));
     history("/login");

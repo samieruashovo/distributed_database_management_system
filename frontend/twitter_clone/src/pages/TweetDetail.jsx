@@ -40,25 +40,24 @@ const TweetDetail = () => {
   const history = useNavigate();
   const [editTitle, setEditTitle] = useState("");
   const tweet = useSelector((state) => state.tweetReducer.singleTweet);
-  console.log(tweet)
+  // console.log(tweet)
   // if(tweet !== undefined){
   //   console.log(tweet.data[0].uuid);
   // }
-  console.log("tweetksjdfh")
+  // console.log("tweetksjdfh")
   const [commentInput, setCommentInput] = useState("");
   const userIn = useSelector((state) => state.userReducer);
 
   const { uuid } = useParams();
   const { user, isAuthenticated } = userIn;
 
-
   const message = useSelector((state) => state.tweetReducer.message);
   const comments = useSelector((state) => state.commentReducer);
   const meta = comments.meta;
 
   useEffect(() => {
-    console.log('running')
-   
+    // console.log('running')
+
     dispatch(tweet_detail(uuid));
     dispatch(tweet_comments(uuid));
   }, [dispatch, uuid]);
@@ -82,7 +81,7 @@ const TweetDetail = () => {
   // http://127.0.0.1:8000/tweets/comments/18/?page=2
 
   const loadMoreComment = () => {
-    console.log(meta?.page, meta?.next);
+    // console.log(meta?.page, meta?.next);
     if (meta.next !== null) {
       dispatch(load_more_comment(uuid, meta.page + 1));
     }
@@ -101,22 +100,16 @@ const TweetDetail = () => {
   //   }
   // }
   if (!tweet.data || tweet.data.length === 0) {
-    return (
-      <div>
-        Loading... 
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   const title = tweet.data[0].title;
 
   return (
     <div>
-  
-      
-  {tweet.data[0].username && (
+      {tweet.data[0].username && (
         <Second>
-           {console.log("running 9100")}
+        
           <TweetHeader headerName="Detail" />
           <div className="tweetCard">
             <div className="actual-tweet">
@@ -129,7 +122,7 @@ const TweetDetail = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   />
-{/* 
+                  {/* 
                   <div className="dropdown-menu dropdown-menu-right dropdownMenu">
                     {user?.email === tweet.data[0].email ? (
                       <>
@@ -160,14 +153,12 @@ const TweetDetail = () => {
                   <img
                     alt="img"
                     src={tweet.data[0].profile_pic}
-                   
                     className="rounded-circle author-image"
                     width="60px"
                     height="60px"
                   />
-
                 </Link>
-                {console.log(tweet.data[0])}
+          
               </span>
               <TweetContent
                 tweet={tweet.data[0]}
@@ -247,8 +238,5 @@ const TweetDetail = () => {
       )}
     </div>
   );
-  }
+};
 export default TweetDetail;
-
-
-

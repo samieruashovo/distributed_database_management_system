@@ -17,13 +17,11 @@ import { setMsgNoti } from "../redux/slices/NotificationSlice";
 // import { axiosInstance } from "..";
 import axios from "axios";
 
-
-
 const PrivateRoomChat = () => {
   const [msgInput, setMsgInput] = useState("");
   const [istyping, setIstyping] = useState(null);
   const [typingUser, setTypingUser] = useState(null);
-  const [chatData, setChatData] = useState([]); 
+  const [chatData, setChatData] = useState([]);
   const { username } = useParams();
   const userIn = useSelector((state) => state.userReducer);
   const [noScroll, setNoScroll] = useState(true);
@@ -31,8 +29,8 @@ const PrivateRoomChat = () => {
   let endpoint = "ws://localhost:3000/";
   let endp = "http://127.0.0.1:8000/";
   const jsonData = localStorage.getItem("userData");
-    const dataObject = JSON.parse(jsonData);
-    console.log("gender"+dataObject.data.gender)
+  const dataObject = JSON.parse(jsonData);
+  // console.log("gender"+dataObject.data.gender)
   const me = dataObject.data.username;
   const chatState = useSelector((state) => state.chatReducer);
   const chats = chatState.chatMessage;
@@ -55,7 +53,7 @@ const PrivateRoomChat = () => {
   useEffect(() => {
     if (localStorage.getItem("access")) {
       client.onopen = function () {
-        console.log("Chat Websoket Connected");
+        // console.log("Chat Websoket Connected");
         dispatch(setMsgNoti());
       };
 
@@ -67,11 +65,8 @@ const PrivateRoomChat = () => {
           if (audioRef.current) {
             audioRef.current.play();
           }
-
         }
-
       };
-
     }
   }, [dispatch]);
 
@@ -99,52 +94,46 @@ const PrivateRoomChat = () => {
     if (!msgInput) {
       alert("cannot be blank !");
     } else {
-        const res = await axiosInstance.post(`chats/send_msg/${username}/${me}/`, {
-    
-            // "id": 1,
-            "sender":me,
-            "text": msgInput
-
-      });
-
+      const res = await axiosInstance.post(
+        `chats/send_msg/${username}/${me}/`,
+        {
+          // "id": 1,
+          sender: me,
+          text: msgInput,
+        }
+      );
     }
     setMsgInput("");
     window.location.reload();
   };
-// let chatData =[];
-let convo;
+  // let chatData =[];
+  let convo;
   const getChat = async (e) => {
+    const res = await axiosInstance.get(`chats/send_msg/${username}/${me}/`);
+    const data = res.data;
+    // console.log(data);
+    // console.log("chat dtat")
 
-        const res = await axiosInstance.get(`chats/send_msg/${username}/${me}/`);
-        const data = res.data;
-        console.log(data);
-        console.log("chat dtat")
+    if (data && data.length > 0) {
+      const conversation = data[0];
+      const convo = data[0]; // Assuming you have only one conversation in the array
+      // chatData=conversation;
+      // Iterate through the messages in the conversation
+      setChatData(conversation.messages);
 
-        if (data && data.length > 0) {
-          const conversation = data[0];
-          const convo =data[0]; // Assuming you have only one conversation in the array
-          // chatData=conversation;
-          // Iterate through the messages in the conversation
-          setChatData(conversation.messages);
-          
-          // for (const message of conversation.messages) {
-            
-          //   const sender = message.sender;
-          //   const username = sender.username;
-          //   const text = message.text;
-          //   const profilePic = sender.profile_pic;
+      // for (const message of conversation.messages) {
 
-          // }
-        }
-       
+      //   const sender = message.sender;
+      //   const username = sender.username;
+      //   const text = message.text;
+      //   const profilePic = sender.profile_pic;
 
-
+      // }
+    }
   };
   useEffect(() => {
     getChat();
-    
   }, []);
-
 
   function loadMore() {
     if (meta?.next) {
@@ -153,18 +142,15 @@ let convo;
     }
   }
 
+  // console.log(chatData)
 
-  console.log(chatData)
-
-         
   const chatMessages = chatData.chatMessages || [];
-  console.log(chatMessages + 'ssss')
+  // console.log(chatMessages + 'ssss')
   return (
     <Message>
       <TweetHeader headerName={username} />
 
       <div className="main-div">
-       
         <div ref={msgDivRef} id="msg-scoll" className="msg-div">
           {meta?.next && (
             <i
@@ -175,24 +161,26 @@ let convo;
               <BiUpArrowCircle />
             </i>
           )}
-          
-        <div>
-          {console.log()}
-        {chatData.map(chatMessage => (
 
-          <div key={chatMessage.id}>
-
- <div
+          <div>
+            {/* {console.log()} */}
+            {chatData.map((chatMessage) => (
+              <div key={chatMessage.id}>
+                <div
                   key={chatMessage.id}
                   className={
-                    chatMessage?.sender?.username === me ? "msg-chat" : "rightby"
+                    chatMessage?.sender?.username === me
+                      ? "msg-chat"
+                      : "rightby"
                   }
                 >
-                
                   {chatMessage?.sender?.username === username && (
                     <Link to={`/${chatMessage?.sender.username}`}>
                       <img
-                        src={"http://127.0.0.1:8000/"+chatMessage?.sender.profile_pic}
+                        src={
+                          "http://127.0.0.1:8000/" +
+                          chatMessage?.sender.profile_pic
+                        }
                         alt="profile"
                         className="authorImage"
                       />
@@ -209,12 +197,9 @@ let convo;
                     {chatMessage.text}
                   </div>
                 </div>
-
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-             
         </div>
 
         <div className="bottom-input">
