@@ -21,7 +21,7 @@ export const PostOperation = ({
   id,
   oriId = null,
   rePost = false,
-  likePostD,
+  likeTweetD,
   like_count,
   comid = null,
   reply,
@@ -35,7 +35,7 @@ export const PostOperation = ({
   const [commentInput, setCommentInput] = useState();
   const userIn = useSelector((state) => state.userReducer);
   const isAuthenticated = userIn.isAuthenticated;
-
+  const [x, setX] = useState(null);
   useEffect(() => {
     setClick(liked);
 
@@ -157,10 +157,11 @@ export const PostOperation = ({
           <AiOutlineLike
             isclicked={isclicked ? 1 : 0}
             onClick={() => {
+              setX(true);
               setClick(!isclicked);
-              likePostD(id);
+              likeTweetD(id);
             }}
-            style={{ color: liked ? "red" : "" }}
+            style={{ color: liked || x ? "red" : "" }}
           />
           {/* <span className="side-name mx-1">Like disabled</span> */}
 

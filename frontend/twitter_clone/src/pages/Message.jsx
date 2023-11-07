@@ -82,7 +82,12 @@ export const RoomResult = ({ res, me, otheruser }) => {
   return (
     <Link to={`/messages/w/${otheruser.username}`}>
       <div key={res.id} className="d-flex result">
-        <img className="authorImage" src={otheruser.avatar} alt="your result" />
+        {console.log(otheruser.profile_pic + "aoooo")}
+        <img
+          className="authorImage"
+          src={`http://127.0.0.1:8000/${otheruser.profile_pic}`}
+          alt="your result"
+        />
 
         <div className="mx-3">
           <strong>{otheruser.username} </strong>
