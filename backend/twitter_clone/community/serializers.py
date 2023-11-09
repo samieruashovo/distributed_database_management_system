@@ -37,7 +37,8 @@ class UserPostSerializer(serializers.ModelSerializer):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = []
+        fields = ['title', 'username', 'body', 'image',
+                  'gender',  'liked']
 
 
 class PostSerializer(serializers.ModelSerializer):

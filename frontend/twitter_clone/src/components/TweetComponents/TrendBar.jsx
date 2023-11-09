@@ -14,7 +14,7 @@ const TrendBar = () => {
   );
   return (
     <div className="second-trend">
-      <SideTop />
+      {/* <SideTop /> */}
       {showSearch !== "no" && <SearchInput />}
       {isAuthenticated ? (
         <>

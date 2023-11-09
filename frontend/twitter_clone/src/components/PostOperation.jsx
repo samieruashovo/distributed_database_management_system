@@ -10,7 +10,7 @@ import {
   deletePost,
   rePost,
 } from "../redux/asyncActions/PostAsync";
-import { addPostComment } from "../redux/asyncActions/CommentAsync";
+import { addComment } from "../redux/asyncActions/CommentAsync";
 import AddPicker from "./SmallComponent/AddPicker";
 import { colors } from "@material-ui/core";
 import axios from "axios";
@@ -48,7 +48,7 @@ export const PostOperation = ({
 
   const commentAdd = (ia) => {
     // console.log("post running commentAdd");
-    dispatch(addPostComment(ia, commentInput, comid, reply));
+    dispatch(addComment(ia, commentInput, comid, reply));
     setCommentInput("");
     setComId(null);
   };

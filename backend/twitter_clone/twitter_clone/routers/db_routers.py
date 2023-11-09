@@ -101,6 +101,7 @@ class TweetRouter:
     def db_for_write(self, model, **hints):
         print("ssas2")
         if model._meta.app_label == "tweets":
+            print(hints)
             print("ssas3")
             # Access the current instance of Tweet and check the username
             tweet_instance = hints.get("instance")
@@ -123,10 +124,18 @@ class TweetRouter:
             # if message_instance:
             #     print("message_instance "+message_instance.user1.username)
             return "male_user_db"
+
         elif model._meta.app_label == "community":
-            post_instance = hints.get("instance")
+            post_instance = hints.get("request")
+            print("running sssssssss")
+            # print(hints)
+            # print(self)
+            print(hints)
+            print("running sssssssss")
+
             if post_instance and hasattr(post_instance, "gender"):
-                # print("ssas4")
+                print("ssassssaaas4")
+                print(post_instance.gender)
                 if post_instance.gender == "male":
                     # print('ssas5')
                     # print("genderss: ")

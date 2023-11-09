@@ -109,7 +109,6 @@ const TweetDetail = () => {
     <div>
       {tweet.data[0].username && (
         <Second>
-        
           <TweetHeader headerName="Detail" />
           <div className="tweetCard">
             <div className="actual-tweet">
@@ -150,15 +149,19 @@ const TweetDetail = () => {
               )}
               <span className="add-tweet-image">
                 <Link to={`/user/${tweet.data[0].username}`}>
+                  {console.log(tweet.data[0].profile_pic + "swww")}
                   <img
                     alt="img"
-                    src={tweet.data[0].profile_pic}
+                    src={
+                      tweet.data[0].profile_pic ||
+                      "https://qph.fs.quoracdn.net/main-qimg-92e5c1d46505b34638aafd281449dabc"
+                    }
+                    // src={tweet.data[0].profile_pic}
                     className="rounded-circle author-image"
                     width="60px"
                     height="60px"
                   />
                 </Link>
-          
               </span>
               <TweetContent
                 tweet={tweet.data[0]}

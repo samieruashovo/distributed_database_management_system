@@ -22,13 +22,11 @@ export const TweetContent = ({
   };
   return (
     <div className="tweet-content">
+      {console.log(tweet)}
       <div>
         <span style={{ display: "flex", alignItems: "center" }}>
-         
-
           <span className="mx-2 side-name">
             @ {tweet.username} |
-           
             <span className="mx-1">{Moment(tweet.created).fromNow(true)}</span>
             {tweet.is_private ? <FaLock /> : <BiGlobe />}
           </span>
@@ -75,12 +73,12 @@ export const TweetContent = ({
           </>
         ) : (
           <p>
-          {tweet.title }
-          <br/>
-          <br/>
+            {tweet.title}
+            <br />
+            <br />
 
-         {tweet.body}
-         </p>
+            {tweet.body}
+          </p>
         )}
       </p>
       {tweet.profile_pic && (

@@ -33,13 +33,23 @@ class PostViewSet(viewsets.ModelViewSet):
         context['request'] = self.request
         return context
 
+    #  if form.is_valid():
+    #             print('y')
+    #             tweet = form.save(commit=False)
+    #             print(tweet)
+    #             # Set username based on the authenticated user
+    #             tweet.username = request.user.username
+    #             tweet.save()
+
     def create_post(self, request):
         if request.method == 'POST':
             form = PostForm(request.data)
             if form.is_valid():
                 post = form.save()
+                serializer = PostSerializer(post)
                 print(post)
-                return Response({'message': 'Tweet created successfully'}, status=201)
+                serializer.save()
+                return Response({'message': 'Post created successfully'}, status=201)
 
             return Response({'error': form.error}, status=400)
 

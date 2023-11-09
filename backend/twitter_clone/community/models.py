@@ -46,6 +46,9 @@ class Post(models.Model):
             self.liked += f',{username}'
             self.save()
 
+    def get_gender(self, gender):
+        return self.gender
+
 
 class Comment(models.Model):
     body = models.TextField(blank=True)  # body of the comment
